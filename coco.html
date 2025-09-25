@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocoPure | Pure Hydration from the Tropics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-green: #2e8b57;
+            --light-green: #90ee90;
+            --cream: #fffdd0;
+            --ocean-blue: #0077be;
+            --coconut-brown: #8b4513;
+            --white: #ffffff;
+            --text-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--ocean-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 119, 190, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--ocean-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background-color: var(--white);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--cream);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item h3 {
+            margin-bottom: 15px;
+        }
+        
+        /* Why Choose Us Section */
+        .why-us {
+            background: linear-gradient(to right, var(--cream) 0%, var(--white) 100%);
+        }
+        
+        .why-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .why-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .why-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--light-green), var(--ocean-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Social Proof Section */
+        .social-proof {
+            background-color: var(--white);
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .testimonial {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Pre-order Section */
+        .pre-order {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--ocean-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .pre-order h2 {
+            color: var(--white);
+        }
+        
+        .pre-order p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .urgency {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: var(--light-green);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-green);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .why-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pure Hydration, Straight from the Tropics</h1>
+                <p>Experience the untouched taste of nature's most perfect electrolyte drink. No added sugars, no concentrates, just crisp, refreshing hydration harvested at its peak.</p>
+                <a href="#pre-order" class="btn">Pre-order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>Nature's Refuel, Perfected</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Natural Electrolytes</h3>
+                    <p>Replenish and rehydrate faster than water alone. Packed with potassium, magnesium, and sodium to keep you balanced.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Zero Added Sugar</h3>
+                    <p>Enjoy the naturally sweet, delicate flavor of young coconuts. Our ingredient list is blissfully short: 100% pure coconut water.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Sustainable Sip by Sip</h3>
+                    <p>We're committed to the planet. Our bottles are made from 100% recycled plastic, and we partner with ethical farms.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>Pure, Natural Energy</h3>
+                    <p>Ditch the artificial jitters. Get a clean, sustained boost of energy to power you through your day or workout.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="container">
+            <div class="why-content">
+                <div class="why-text">
+                    <h2>The Difference is in the Source</h2>
+                    <p>We skipped the middleman. CocoPure is sourced directly from a network of small, sustainable farms in Southeast Asia. Our coconuts are harvested young, at the perfect moment for flavor and nutrient density.</p>
+                    <p>While other brands use concentrate, we pledge <strong>never from concentrate (NFC)</strong>. What you taste is the real deal: crisp, clean, and incredibly refreshing. It's not just coconut water; it's a promise of purity.</p>
+                </div>
+                <div class="why-image">
+                    [Image: Farmer harvesting fresh coconuts]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>Everyone's Talking About the Taste!</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p class="testimonial-text">"I'm a hydration snob, and this is the best coconut water I've ever had. No artificial aftertaste—just pure, light sweetness. I'm hooked!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JL</div>
+                        <div>
+                            <strong>Jamie L.</strong><br>
+                            Fitness Instructor
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Finally, a brand that cares about taste AND the environment. The sustainable packaging is a huge plus for me. Pre-ordering a full case!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div>
+                            <strong>Maria S.</strong><br>
+                            Eco-Conscious Consumer
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"As someone who avoids sugary drinks, CocoPure is a game-changer. It's my go-to for post-yoga hydration. So light and refreshing!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DT</div>
+                        <div>
+                            <strong>David T.</strong><br>
+                            Yoga Enthusiast
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-order CTA Section -->
+    <<!-- Updated Pre-order Section with Database -->
+<section id="pre-order" class="pre-order">
+    <div class="container">
+        <div class="urgency-badge">Limited Early-Bird Pre-orders Available</div>
+        <h2>Ready to Experience Pure Hydration?</h2>
+        <p>Be among the first to taste Cocofresh. Pre-order now to secure your supply at special introductory pricing.</p>
+        
+        <form id="preOrderForm" class="pre-order-form">
+            <div class="form-group">
+                <input type="email" id="customerEmail" placeholder="Your email address" required>
+                <input type="number" id="bottleQuantity" min="1" max="12" value="1" placeholder="Quantity">
+            </div>
+            <button type="submit" class="cta-button" id="submitBtn">
+                Reserve Your Order Now
+            </button>
+        </form>
+        
+        <div id="orderConfirmation" style="display: none; margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.2); border-radius: 10px;">
+            <h3>🎉 Thank You for Your Pre-order!</h3>
+            <p><strong>Order Details:</strong></p>
+            <p id="orderDetails"></p>
+            <p>We'll contact you within 24 hours to complete your order.</p>
+        </div>
+        
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Free shipping on orders of 6 bottles or more
+        </p>
+    </div>
+</section>
+
+<script>
+// Database configuration
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCidePTMya6yL7fZ3XY-Cmo7y64Zpg2_IKrzCQlI6QU3iEnzhBox_2wJrl01892Vi8Jw/exec';
+
+// Form submission handler
+document.getElementById('preOrderForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('customerEmail').value;
+    const quantity = document.getElementById('bottleQuantity').value;
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Validate email
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    // Show loading state
+    submitBtn.textContent = 'Processing...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Save to database
+        const result = await saveToDatabase(email, quantity);
+        
+        if (result.success) {
+            // Show success message
+            showOrderConfirmation(email, quantity);
+            this.reset();
+        } else {
+            throw new Error(result.message);
+        }
+    } catch (error) {
+        alert('Error: ' + error.message);
+        submitBtn.textContent = 'Try Again';
+    } finally {
+        setTimeout(() => {
+            submitBtn.textContent = 'Reserve Your Order Now';
+            submitBtn.disabled = false;
+        }, 3000);
+    }
+});
+
+// Save to Google Sheets function
+async function saveToDatabase(email, quantity) {
+    const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            quantity: quantity,
+            source: 'cocofresh-landing-page',
+            timestamp: new Date().toISOString(),
+            status: 'pre-order'
+        })
+    });
+    
+    const data = await response.json();
+    return data;
+}
+
+// Show confirmation message
+function showOrderConfirmation(email, quantity) {
+    const confirmationDiv = document.getElementById('orderConfirmation');
+    const orderDetails = document.getElementById('orderDetails');
+    
+    orderDetails.innerHTML = `
+        Email: ${email}<br>
+        Quantity: ${quantity} bottle${quantity > 1 ? 's' : ''}<br>
+        Order ID: #CF${Date.now().toString().slice(-6)}
+    `;
+    
+    confirmationDiv.style.display = 'block';
+    document.getElementById('preOrderForm').style.display = 'none';
+    
+    // Scroll to confirmation
+    confirmationDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Email validation
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+</script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CocoPure</h3>
+                    <p>Nature's Electrolyte Drink™</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#">About Us</a>
+                        <a href="#">Our Story</a>
+                        <a href="#">Sustainability</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:info@cocopure.com">info@cocopure.com</a>
+                        <a href="tel:+1800COCOPURE">1-800-COCOPURE</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Shipping Info</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Returns & Refunds</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CocoPure. All rights reserved. Pre-orders are expected to ship in November 2023.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add a simple countdown timer for urgency (optional)
+        function updateCountdown() {
+            // Set the date we're counting down to (3 days from now)
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 3);
+            
+            // Update the count down every 1 second
+            const x = setInterval(function() {
+                // Get today's date and time
+                const now = new Date().getTime();
+                
+                // Find the distance between now and the count down date
+                const distance = countDownDate - now;
+                
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result in an element with id="countdown"
+                const countdownElement = document.getElementById('countdown');
+                if(countdownElement) {
+                    countdownElement.innerHTML = "Offer ends in: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+                }
+                
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    if(countdownElement) {
+                        countdownElement.innerHTML = "OFFER EXPIRED";
+                    }
+                }
+            }, 1000);
+        }
+        
+        // Uncomment the line below to enable the countdown timer
+        // updateCountdown();
+    </script>
+</body>
+</html>
