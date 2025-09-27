@@ -805,28 +805,6 @@ function validateEmail(email) {
         // Initialize animation controls
         restartBtn.disabled = true;
     </script>
-    <!-- Add this button to view responses -->
-<button onclick="showResponses()" style="position: fixed; bottom: 10px; right: 10px; background: #333; color: white; padding: 8px; border: none; border-radius: 5px; font-size: 12px; z-index: 10000;">
-    👁️ View Responses
-</button>
-
-<script>
-function showResponses() {
-    const responses = JSON.parse(localStorage.getItem('cocofreshResponses') || '[]');
-    
-    if (responses.length === 0) {
-        alert('No responses yet. Try submitting the form first.');
-        return;
-    }
-    
-    let message = `📊 COCOFRESH RESPONSES (${responses.length} total)\n\n`;
-    
-    responses.forEach((response, index) => {
-        message += `${index + 1}. ${response.email}\n   📅 ${new Date(response.timestamp).toLocaleString()}\n\n`;
-    });
-    
-    alert(message);
-}
-</script>
+    <script src="coco.js"></script>
 </body>
 </html>
