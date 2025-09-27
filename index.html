@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocofresh - Sustainable Coconut Water</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d5016;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2d5016;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #b8941f;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .animation-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 500px;
+        }
+
+        /* Bottle styling based on the reference image */
+        .bottle {
+            position: relative;
+            width: 180px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .bottle-top {
+            width: 120px;
+            height: 280px;
+            background: linear-gradient(to right, #f5f5f5, #e8e8e8);
+            border-radius: 60px 60px 20px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid #d4af37;
+            border-bottom: none;
+        }
+
+        .bottle-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #2d5016;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .bottle-label .coconut {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .bottle-label .water {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .bottle-label .twist-open {
+            font-size: 0.9rem;
+            color: #d4af37;
+            font-style: italic;
+        }
+
+        .coconut-water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            transition: height 2s ease;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .bottle-bottom {
+            width: 140px;
+            height: 120px;
+            background: linear-gradient(to right, #f5f5f5, #e8e8e8);
+            border-radius: 20px 20px 60px 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid #d4af37;
+            border-top: none;
+            transition: transform 1.5s ease;
+        }
+
+        .coconut-malai {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, #f5e6c8, #e8d5a8);
+            transition: height 2s ease;
+            border-radius: 20px 20px 60px 60px;
+        }
+
+        .twist-line {
+            position: absolute;
+            top: -2px;
+            width: 100%;
+            height: 4px;
+            background: #d4af37;
+            z-index: 3;
+        }
+
+        .cap {
+            width: 50px;
+            height: 20px;
+            background: #d4af37;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .animation-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: #2d5016;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .control-btn:hover {
+            background: #1f3710;
+        }
+
+        .control-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Character styling */
+        .character {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .character-head {
+            width: 40px;
+            height: 40px;
+            background: #f5e6c8;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .character-body {
+            width: 60px;
+            height: 80px;
+            background: #2d5016;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            top: -5px;
+        }
+
+        .bottle-in-hand {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-20deg);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d5016;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #2d5016;
+        }
+
+        .how-it-works {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem;
+            padding: 2rem;
+        }
+
+        .step-number {
+            background: #d4af37;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .waitlist {
+            padding: 5rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .waitlist-form {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .thank-you {
+            display: none;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Responsive design */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .animation-container {
+                height: 400px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Coco<span>fresh</span></div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#waitlist">Join Waitlist</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>The Ultimate Coconut Experience</h1>
+                <p>Enjoy fresh coconut water and creamy malai in our innovative, compostable bottle. Just twist the bottom to reveal the delicious coconut flesh!</p>
+                <button class="cta-button" onclick="scrollToWaitlist()">Join the Waitlist</button>
+                
+                <div class="animation-controls">
+                    <button class="control-btn" id="restartBtn" onclick="restartAnimation()"><i class="fas fa-redo"></i> Restart</button>
+                    <button class="control-btn" id="startBtn" onclick="startAnimation()"><i class="fas fa-play"></i> See How It Works</button>
+                </div>
+            </div>
+            
+            <div class="animation-container">
+                <!-- Character -->
+                <div class="character" id="character">
+                    <div class="character-head"></div>
+                    <div class="character-body"></div>
+                </div>
+                
+                <!-- Bottle in hand -->
+                <div class="bottle-in-hand" id="bottleInHand">
+                    <div class="bottle">
+                        <div class="bottle-top">
+                            <div class="bottle-label">
+                                <div class="coconut">COCONUT</div>
+                                <div class="water">WATER</div>
+                                <div class="twist-open">TWIST OPEN</div>
+                            </div>
+                            <div class="coconut-water" id="coconutWater" style="height: 100%;"></div>
+                        </div>
+                        <div class="twist-line"></div>
+                        <div class="bottle-bottom" id="bottleBottom">
+                            <div class="coconut-malai" id="coconutMalai" style="height: 100%;"></div>
+                        </div>
+                        <div class="cap"></div>
+                    </div>
+                </div>
+                
+                <!-- Bubbles for drinking animation -->
+                <div class="bubble" id="bubble1"></div>
+                <div class="bubble" id="bubble2"></div>
+                <div class="bubble" id="bubble3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Cocofresh?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Sustainable Packaging</h3>
+                    <p>Our bottle is made from waste paper and sugarcane pulp - 100% compostable and eco-friendly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🥥</div>
+                    <h3>Fresh Coconut Malai</h3>
+                    <p>Separate compartment keeps malai fresh until you're ready to enjoy. No preservatives added.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Innovative Design</h3>
+                    <p>Simple twist-open mechanism for the perfect coconut experience anytime, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Twist</h3>
+                    <p>Gently twist the bottom compartment to unlock the fresh malai. The innovative design keeps it sealed until you're ready.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Pour & Drink</h3>
+                    <p>Enjoy the refreshing coconut water from the top compartment. Pure, natural, and hydrating.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Savor</h3>
+                    <p>Scoop out the creamy coconut malai from the bottom compartment. The perfect finish to your coconut experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="waitlist">
+        <div class="container">
+            <h2 class="section-title">Be the First to Experience Cocofresh</h2>
+            <p>Join our waitlist for exclusive launch offers and updates</p>
+            
+            <form class="waitlist-form" id="waitlistForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="cta-button">Notify Me at Launch</button>
+            </form>
+            
+            <div class="thank-you" id="thankYouMessage">
+                Thank you for joining our waitlist! We'll be in touch soon with exclusive offers.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">Coco<span>fresh</span></div>
+            <p>The sustainable way to enjoy coconut water and malai</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2024 Cocofresh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation elements
+        const character = document.getElementById('character');
+        const bottleInHand = document.getElementById('bottleInHand');
+        const coconutWater = document.getElementById('coconutWater');
+        const coconutMalai = document.getElementById('coconutMalai');
+        const bottleBottom = document.getElementById('bottleBottom');
+        const bubbles = [
+            document.getElementById('bubble1'),
+            document.getElementById('bubble2'),
+            document.getElementById('bubble3')
+        ];
+        
+        const startBtn = document.getElementById('startBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        
+        let animationInProgress = false;
+        
+        // Function to start the animation
+        function startAnimation() {
+            if (animationInProgress) return;
+            
+            animationInProgress = true;
+            startBtn.disabled = true;
+            restartBtn.disabled = true;
+            
+            // Reset animation state
+            resetAnimation();
+            
+            // Step 1: Show character and bottle in hand
+            setTimeout(() => {
+                character.style.opacity = '1';
+                bottleInHand.style.opacity = '1';
+                
+                // Step 2: Twist the bottom compartment after a delay
+                setTimeout(() => {
+                    bottleBottom.style.transform = 'rotate(-30deg)';
+                    
+                    // Step 3: Start drinking animation
+                    setTimeout(() => {
+                        let waterHeight = 100;
+                        const drinkWater = setInterval(() => {
+                            waterHeight -= 3;
+                            coconutWater.style.height = `${waterHeight}%`;
+                            
+                            // Show bubbles occasionally
+                            if (waterHeight % 20 === 0) {
+                                showBubbles();
+                            }
+                            
+                            if (waterHeight <= 0) {
+                                clearInterval(drinkWater);
+                                
+                                // Final step: Animation complete
+                                setTimeout(() => {
+                                    animationInProgress = false;
+                                    restartBtn.disabled = false;
+                                }, 1000);
+                            }
+                        }, 100);
+                    }, 1000);
+                }, 1000);
+            }, 500);
+        }
+        
+        // Function to reset animation to initial state
+        function resetAnimation() {
+            character.style.opacity = '0';
+            bottleInHand.style.opacity = '0';
+            bottleBottom.style.transform = 'rotate(0deg)';
+            coconutWater.style.height = '100%';
+            coconutMalai.style.height = '100%';
+            
+            bubbles.forEach(bubble => {
+                bubble.style.opacity = '0';
+            });
+        }
+        
+        // Function to restart animation
+        function restartAnimation() {
+            resetAnimation();
+            setTimeout(startAnimation, 500);
+        }
+        
+        // Function to show bubbles during drinking animation
+        function showBubbles() {
+            bubbles.forEach((bubble, index) => {
+                // Random position and size for each bubble
+                const size = Math.random() * 15 + 5;
+                const left = Math.random() * 100;
+                const bottom = Math.random() * 50 + 20;
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.bottom = `${bottom}%`;
+                bubble.style.opacity = '0.8';
+                
+                // Animate bubble rising
+                bubble.animate([
+                    { bottom: `${bottom}%`, opacity: 0.8 },
+                    { bottom: `${bottom + 30}%`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    delay: index * 200
+                });
+                
+                // Reset bubble after animation
+                setTimeout(() => {
+                    bubble.style.opacity = '0';
+                }, 1000 + index * 200);
+            });
+        }
+        
+        // Waitlist form handling
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            // Simple email validation
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Show thank you message
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('waitlistForm').reset();
+            
+            // In a real application, you would send this data to your server
+            console.log('New subscriber:', email);
+        });
+        
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Scroll to waitlist function
+        function scrollToWaitlist() {
+            document.getElementById('waitlist').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize animation controls
+        restartBtn.disabled = true;
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
