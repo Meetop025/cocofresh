@@ -1,6 +1,6 @@
 // google-sheets.js - Backend to save to Google Sheets
 
-const scriptURL = 'https://docs.google.com/spreadsheets/d/1a19f4CgsgA_c-DLTmo1kIpcM9FAJjCmVk80J42hhhSI/edit?usp=sharing';
+const scriptURL = 'https://script.google.com/macros/library/d/17DT_NFeUAjNt_CeweAXwtimg8q0VT-cYjQxWeQx6VrXpPIuWf-C2PSJ7/1';
 
 function saveToDatabase(email, source = 'landing-page') {
     return fetch(scriptURL, {
