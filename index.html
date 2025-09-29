@@ -124,12 +124,21 @@
             <h2 class="section-title">Be the First to Experience Cocofresh</h2>
             <p>Join our waitlist for exclusive launch offers and updates</p>
             
-            <form class="waitlist-form" id="waitlistForm">
-                <div class="form-group">
-                    <input type="email" id="email" placeholder="Enter your email address" required>
-                </div>
-                <button type="submit" class="cta-button">Notify Me at Launch</button>
-            </form>
+            <form
+  action="https://formspree.io/f/xkgqjppn"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
             
             <div class="thank-you" id="thankYouMessage">
                 Thank you for joining our waitlist! We'll be in touch soon with exclusive offers.
